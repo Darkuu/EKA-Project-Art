@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class FinalSubmissionZone : MonoBehaviour
 {
+    [SerializeField] private float artworkValue = 100f;  
+    public MoneyManager moneyManager;  
+
     private void OnTriggerEnter(Collider other)
     {
         Artwork artwork = other.GetComponent<Artwork>();
@@ -13,9 +16,12 @@ public class FinalSubmissionZone : MonoBehaviour
 
     private void SubmitArtwork(Artwork artwork)
     {
-        Debug.Log("Artwork successfully submitted!");
+
+        if (artwork.isValid)
+        {
+            moneyManager.AddMoney(artworkValue); 
+        }
         
-        // Optional: Reward player or give feedback for successful submission
-        Destroy(artwork.gameObject); // Remove artwork after submission
+        Destroy(artwork.gameObject); 
     }
 }
