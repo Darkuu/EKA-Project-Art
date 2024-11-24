@@ -8,14 +8,23 @@ public class DropZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Artwork artwork = other.GetComponent<Artwork>();
-        EvaluateArtwork(artwork);
+        if (artwork != null)
+        {
+            EvaluateArtwork(artwork);
+        }
     }
 
     private void EvaluateArtwork(Artwork artwork)
     {
+        // Determine if the grading is correct
         bool isCorrect = (ratingType == Rating.Yes && artwork.isValid) || 
                          (ratingType == Rating.No && !artwork.isValid);
 
+        // Mark the artwork as graded and record whether the grading was correct
+        artwork.isGraded = true;
+        artwork.wasGradedCorrectly = isCorrect;
+
+        // Feedback
         if (isCorrect)
         {
             Debug.Log("Correct rating!");
@@ -24,8 +33,5 @@ public class DropZone : MonoBehaviour
         {
             Debug.Log("Incorrect rating.");
         }
-
-        artwork.isGraded = true; // Mark as graded
-        Debug.Log("Please submit the graded artwork to the final submission zone.");
     }
 }

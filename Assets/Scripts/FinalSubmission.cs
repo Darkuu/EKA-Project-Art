@@ -16,12 +16,12 @@ public class FinalSubmissionZone : MonoBehaviour
 
     private void SubmitArtwork(Artwork artwork)
     {
-
-        if (artwork.isValid)
+        // Reward money if the artwork was graded correctly
+        if (artwork.wasGradedCorrectly) 
         {
             moneyManager.AddMoney(artworkValue); 
         }
-        
-        Destroy(artwork.gameObject); 
+
+        Destroy(artwork.gameObject); // Remove artwork from the scene
     }
 }

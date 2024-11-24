@@ -8,6 +8,7 @@ public class Artwork : MonoBehaviour
     public bool isValid;
 
     public bool isGraded = false; // Track if artwork has been graded
+    public bool wasGradedCorrectly = false; // Track if artwork was graded correctly
 
     void Start()
     {

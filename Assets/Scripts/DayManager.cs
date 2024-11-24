@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro; // Import TextMeshPro namespace
 
 public class DayManager : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class DayManager : MonoBehaviour
 
     public UnityEvent OnNewDay;
 
-    public string currentValidColor; // Store the valid color as a string
+    [Header("Valid Color Settings")] public string currentValidColor; // Store the valid color as a string
+    public TextMeshProUGUI validColorText; // Reference to the TextMeshProUGUI component
 
     private void Awake()
     {
@@ -15,6 +17,10 @@ public class DayManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Initialize the current valid color and update the display
+            currentValidColor = GetRandomValidColor();
+            UpdateValidColorDisplay();
         }
         else
         {
@@ -25,8 +31,12 @@ public class DayManager : MonoBehaviour
     public void ChangeDay()
     {
         // Logic to change day and set valid color
-        // Example: Let's say today's valid color is determined by some logic
         currentValidColor = GetRandomValidColor();
+
+        // Update the display text
+        UpdateValidColorDisplay();
+
+        // Invoke OnNewDay event
         OnNewDay.Invoke();
     }
 
@@ -38,7 +48,21 @@ public class DayManager : MonoBehaviour
     private string GetRandomValidColor()
     {
         // Implement your logic to set a valid color for the day
-        string[] validColors = { "red", "blue", "green", "purplepink", "brightgreen" }; // Add custom colors
+        string[] validColors = { "red", "blue", "green", "purplepink", "brightgreen" };
         return validColors[Random.Range(0, validColors.Length)];
+    }
+
+    private void UpdateValidColorDisplay()
+    {
+        if (validColorText != null)
+        {
+            // Update the TextMeshProUGUI component with the current valid color
+            validColorText.text =
+                $"Today's Paintings must be mainly made of the color <color={currentValidColor}>{currentValidColor.ToUpper()}</color>";
+        }
+        else
+        {
+            Debug.LogWarning("ValidColorText is not assigned in the DayManager!");
+        }
     }
 }
