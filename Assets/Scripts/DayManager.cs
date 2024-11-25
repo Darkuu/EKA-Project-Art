@@ -16,7 +16,6 @@ public class DayManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
 
             // Initialize the current valid color and update the display
             currentValidColor = GetRandomValidColor();
@@ -24,7 +23,6 @@ public class DayManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
         }
     }
 
@@ -48,7 +46,7 @@ public class DayManager : MonoBehaviour
     private string GetRandomValidColor()
     {
         // Implement your logic to set a valid color for the day
-        string[] validColors = { "red", "blue", "green", "purplepink", "brightgreen" };
+        string[] validColors = { "red","green"};
         return validColors[Random.Range(0, validColors.Length)];
     }
 
