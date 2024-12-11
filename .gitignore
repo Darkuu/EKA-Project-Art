@@ -55,11 +55,6 @@ ExportedObj/
 # Unity3D generated file on crash reports
 sysinfo.txt
 
-# Builds
-*.apk
-*.aab
-*.unitypackage
-*.app
 
 # Crashlytics generated file
 crashlytics-build.properties
@@ -70,3 +65,18 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+
+.idea
+
+
+Assets/Plugins
+Assets/Plugins.meta
+Assets/Engine
+Assets/Engine.meta
+Assets/Ultimate Game Tools
+Assets/Ultimate Game Tools.meta
+Assets/StreamingAssets/build_info.txt
+Assets/StreamingAssets/build_info.txt.meta
+Assets/StreamingAssets.meta
+Assets/Engine.meta
